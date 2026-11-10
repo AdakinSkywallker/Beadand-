@@ -73,3 +73,21 @@ footer {
     padding: 5px 20px;
     background-color: #CC99FF;
 }
+
+.video-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.video {
+    flex: 1;
+    min-width: 300px;
+}
+
+.video iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 10px;
+}
