@@ -14,30 +14,35 @@ div#wrapper {
     margin: 10px;
 }
 
+/* Navigáció */
 aside {
-    display: table-cell;
-    vertical-align: top;
+    display: block;
 }
 
 nav {
-    margin: 0px 10px 0px 0px;
-    top: 0px;
+    margin: 0px 0px 10px 0px;
     border-radius: 10px;
     background-color: #FF6600;
 }
 
 nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     list-style-type: none;
     margin: 0px;
     padding: 15px 0px;
 }
 
 nav ul li {
-    padding: 0px 15px;;
+    flex: 1;
+    text-align: center;
+    padding: 0px 15px;
 }
 
 nav ul li.active {
-    border-right: 5px solid blue;
+    border-bottom: 5px solid blue;
 }
 
 nav ul a {
@@ -46,14 +51,14 @@ nav ul a {
 }
 
 div#content {
-    display: table-cell;
-    width: 100%;
+    display: block;
+    width: auto;
     border-radius: 10px;
     background-color: #99FFCC;
     padding: 15px;
 }
 
-div#content img{
+div#content img {
     float: right;
     width: 20em;
     height: auto;
