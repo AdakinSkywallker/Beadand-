@@ -1,6 +1,74 @@
-<h2>Adatok:</h2>
-<p>Ügyvezető: <strong>Valaki Az</strong></p>
-<p>E-mail: <strong>valaki.az@minihonlap.hu</strong></p>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2726.3375296155727!2d19.66695091525771!3d46.89607994478184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4743da7a6c479e1d%3A0xc8292b3f6dc69e7f!2sPallasz+Ath%C3%A9n%C3%A9+Egyetem+GAMF+Kar!5e0!3m2!1shu!2shu!4v1475753185783" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-<br>
-<a target="_blank" href="https://www.google.hu/maps/place/Pallasz+Ath%C3%A9n%C3%A9+Egyetem+GAMF+Kar/@46.8960799,19.6669509,17z/data=!3m1!4b1!4m5!3m4!1s0x4743da7a6c479e1d:0xc8292b3f6dc69e7f!8m2!3d46.8960763!4d19.6691396?hl=hu">Nagyobb térkép</a>
+<h1>Kapcsolat</h1>
+
+<?php if ($sikeres) { ?>
+    <!-- EZ A KÉRT "ÚJ OLDAL/TARTALOM" SIKERES KÜLDÉS UTÁN -->
+    <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">
+        <h3>Köszönjük az üzenetet!</h3>
+        <p>Az alábbi adatokat sikeresen rögzítettük és elküldtük az oldal tulajdonosának:</p>
+        <ul>
+            <li><strong>Név:</strong> <?= htmlspecialchars($elkuldott_adatok['nev']) ?></li>
+            <li><strong>E-mail:</strong> <?= htmlspecialchars($elkuldott_adatok['email']) ?></li>
+            <li><strong>Üzenet:</strong> <?= nl2br(htmlspecialchars($elkuldott_adatok['szoveg'])) ?></li>
+            <li><strong>Küldő státusza:</strong> <?= htmlspecialchars($elkuldott_adatok['login']) ?></li>
+        </ul>
+        <br>
+        <a href="?oldal=kapcsolat">Új üzenet írása</a>
+    </div>
+<?php } else { ?>
+    <!-- HIBAÜZENET MEGJELENÍTÉSE -->
+    <?php if ($hiba != "") { ?>
+        <div style="color: red; font-weight: bold; margin-bottom: 15px;"><?= $hiba ?></div>
+    <?php } ?>
+
+    <!-- AZ ŰRLAP (HTML5 validáció nélkül, type="text"-ként minden) -->
+    <form name="kapcsolatForm" action="" method="POST" onsubmit="return ellenoriz();">
+        <fieldset>
+            <legend>Írjon nekünk üzenetet!</legend>
+            
+            <label for="nev">Név:</label><br>
+            <input type="text" id="nev" name="nev" style="width: 300px;"><br><br>
+            
+            <label for="email">E-mail cím:</label><br>
+            <!-- Szándékosan type="text" a type="email" helyett! -->
+            <input type="text" id="email" name="email" style="width: 300px;"><br><br>
+            
+            <label for="szoveg">Üzenet:</label><br>
+            <textarea id="szoveg" name="szoveg" rows="5" style="width: 300px;"></textarea><br><br>
+            
+            <input type="submit" name="kuld" value="Üzenet elküldése">
+        </fieldset>
+    </form>
+
+    <!-- KLIENSOLDALI ELLENŐRZÉS (JavaScript) -->
+    <script>
+    function ellenoriz() {
+        var nev = document.getElementById("nev").value;
+        var email = document.getElementById("email").value;
+        var szoveg = document.getElementById("szoveg").value;
+        var hiba = "";
+
+        if (nev.trim() === "") {
+            hiba += "Kliens hiba: A név megadása kötelező!\n";
+        }
+        if (email.trim() === "") {
+            hiba += "Kliens hiba: Az e-mail cím megadása kötelező!\n";
+        } else {
+            // Egyszerű Regex az e-mail formátum ellenőrzésére
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!re.test(email)) {
+                hiba += "Kliens hiba: Az e-mail cím formátuma hibás!\n";
+            }
+        }
+        if (szoveg.trim() === "") {
+            hiba += "Kliens hiba: Az üzenet mező nem lehet üres!\n";
+        }
+
+        if (hiba !== "") {
+            alert(hiba); // Hibaüzenet felugró ablakban
+            return false; // Megakadályozza az űrlap elküldését
+        }
+        
+        return true; // Ha minden jó, mehet a PHP-nak
+    }
+    </script>
+<?php } ?>
