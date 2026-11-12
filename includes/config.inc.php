@@ -4,9 +4,9 @@ $ablakcim = array(
 );
 
 $fejlec = array(
-    'kepforras' => 'Vaszilij-EDC.png',
-    'kepalt' => 'Vaszilij EDC log',
-	'cim' => 'Vaszilij EDC',
+    'kepforras' => 'logo.png',
+    'kepalt' => 'logo',
+	'cim' => 'Mini honlap',
 	'motto' => ''
 );
 
