@@ -11,21 +11,21 @@ $hibak = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $nev = trim($_POST['nev'] ?? '');
-    $kor = trim($_POST['kor'] ?? '');
+    $eletkor = trim($_POST['eletkor'] ?? '');
     $keszsegek = trim($_POST['keszsegek'] ?? '');
     $munkakor = trim($_POST['munkakor'] ?? '');
-    $cim = trim($_POST['cim'] ?? '');
+    $lakcim = trim($_POST['lakcim'] ?? '');
 
     if (strlen($nev) < 2) {
         $hibak[] = "A név legalább 2 karakter legyen!";
     }
 
-    if (!filter_var($kor, FILTER_VALIDATE_INT) ||
-        $kor < 1 || $kor > 120) {
+    if (!filter_var($eletkor, FILTER_VALIDATE_INT) ||
+        $eletkor < 1 || $eletkor > 120) {
         $hibak[] = "Hibás életkor!";
     }
 
-    if ($keszsegek == '' || $munkakor == '' || $cim == '') {
+    if ($keszsegek == '' || $munkakor == '' || $lakcim == '') {
         $hibak[] = "Minden mezőt ki kell tölteni!";
     }
 
@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
 
             $sql = "INSERT INTO alkalmazottak
-                    (nev, kor, keszsegek, munkakor, cim)
+                    (nev, eletkor, keszsegek, munkakor, lakcim)
                     VALUES (?, ?, ?, ?, ?)";
 
             $sth = $dbh->prepare($sql);
 
             $sth->execute([
-                $nev, $kor, $keszsegek, $munkakor, $cim
+                $nev, $eletkor, $keszsegek, $munkakor, $lakcim
             ]);
 
             header("Location: tablazat");

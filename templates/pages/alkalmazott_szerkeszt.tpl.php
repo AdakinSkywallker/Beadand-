@@ -1,18 +1,16 @@
-
 <h2>Alkalmazott módosítása</h2>
 
-<?php foreach($hibak as $hiba) { ?>
+<?php foreach ($hibak as $hiba) { ?>
     <p style="color:red;">
         <?= htmlspecialchars($hiba) ?>
     </p>
 <?php } ?>
 
-<?php if($sor) { ?>
+<?php if ($sor) { ?>
 
 <form method="post" action="alkalmazott_szerkeszt">
 
-    <input type="hidden" name="id"
-           value="<?= $id ?>">
+    <input type="hidden" name="id" value="<?= $id ?>">
 
     Név:<br>
     <input type="text" name="nev"
@@ -20,8 +18,8 @@
     <br><br>
 
     Életkor:<br>
-    <input type="text" name="kor"
-        value="<?= htmlspecialchars($_POST['kor'] ?? $sor['kor']) ?>">
+    <input type="number" name="eletkor"
+        value="<?= htmlspecialchars($_POST['eletkor'] ?? $sor['eletkor']) ?>">
     <br><br>
 
     Készségek:<br>
@@ -34,9 +32,9 @@
         value="<?= htmlspecialchars($_POST['munkakor'] ?? $sor['munkakor']) ?>">
     <br><br>
 
-    Cím:<br>
-    <input type="text" name="cim"
-        value="<?= htmlspecialchars($_POST['cim'] ?? $sor['cim']) ?>">
+    Lakcím:<br>
+    <input type="text" name="lakcim"
+        value="<?= htmlspecialchars($_POST['lakcim'] ?? $sor['lakcim']) ?>">
     <br><br>
 
     <button type="submit" name="mentes">
