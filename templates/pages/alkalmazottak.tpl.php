@@ -1,8 +1,9 @@
+
 <h2>Alkalmazottak kezelése</h2>
 
 <?php if (isset($_SESSION['login'])) { ?>
     <a href="alkalmazott_uj">
-        <button type="button">Add New</button>
+        <button type="button">Új alkalmazott hozzáadása</button>
     </a>
 <?php } ?>
 
@@ -15,14 +16,14 @@
 <table class="crud-table">
 
     <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Skills</th>
-        <th>Designation</th>
-        <th>Address</th>
+        <th>Név</th>
+        <th>Életkor</th>
+        <th>Készségek</th>
+        <th>Munkakör</th>
+        <th>Lakcím</th>
 
         <?php if (isset($_SESSION['login'])) { ?>
-            <th>Actions</th>
+            <th>Műveletek</th>
         <?php } ?>
     </tr>
 
@@ -31,10 +32,10 @@
     <tr>
 
         <td><?= htmlspecialchars($sor['nev']) ?></td>
-        <td><?= htmlspecialchars($sor['kor']) ?></td>
+        <td><?= htmlspecialchars($sor['eletkor']) ?></td>
         <td><?= htmlspecialchars($sor['keszsegek']) ?></td>
         <td><?= htmlspecialchars($sor['munkakor']) ?></td>
-        <td><?= htmlspecialchars($sor['cim']) ?></td>
+        <td><?= htmlspecialchars($sor['lakcim']) ?></td>
 
         <?php if (isset($_SESSION['login'])) { ?>
             <td>
@@ -42,14 +43,14 @@
                 <form action="alkalmazott_szerkeszt" method="post">
                     <input type="hidden" name="id"
                            value="<?= $sor['id'] ?>">
-                    <button class="edit" type="submit">Edit</button>
+                    <button class="edit" type="submit">Szerkesztés</button>
                 </form>
 
                 <form action="alkalmazott_torol" method="post"
-                      onsubmit="return confirm('Biztosan törlöd?');">
+                      onsubmit="return confirm('Biztosan törölni szeretnéd ezt az alkalmazottat?');">
                     <input type="hidden" name="id"
                            value="<?= $sor['id'] ?>">
-                    <button class="delete" type="submit">Delete</button>
+                    <button class="delete" type="submit">Törlés</button>
                 </form>
 
             </td>

@@ -1,7 +1,7 @@
 
 <h2>Új alkalmazott felvétele</h2>
 
-<?php foreach($hibak as $hiba) { ?>
+<?php foreach ($hibak as $hiba) { ?>
     <p style="color:red;">
         <?= htmlspecialchars($hiba) ?>
     </p>
@@ -13,7 +13,7 @@
     <input type="text" name="nev"><br><br>
 
     Életkor:<br>
-    <input type="text" name="kor"><br><br>
+    <input type="number" name="eletkor"><br><br>
 
     Készségek:<br>
     <input type="text" name="keszsegek"><br><br>
@@ -21,8 +21,8 @@
     Munkakör:<br>
     <input type="text" name="munkakor"><br><br>
 
-    Cím:<br>
-    <input type="text" name="cim"><br><br>
+    Lakcím:<br>
+    <input type="text" name="lakcim"><br><br>
 
     <button type="submit">Mentés</button>
 
