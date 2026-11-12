@@ -1,6 +1,11 @@
 
 <?php
 
+if (!isset($_SESSION['login'])) {
+    header("Location: belepes");
+    exit;
+}
+
 $hibak = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

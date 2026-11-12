@@ -1,6 +1,11 @@
 
 <?php
 
+if (!isset($_SESSION['login'])) {
+    header("Location: belepes");
+    exit;
+}
+
 $hibak = [];
 $sor = null;
 $id = (int)($_POST['id'] ?? 0);

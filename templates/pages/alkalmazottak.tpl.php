@@ -1,13 +1,14 @@
-
 <h2>Alkalmazottak kezelése</h2>
 
-<a href="alkalmazott_uj">
-    <button type="button">Add New</button>
-</a>
+<?php if (isset($_SESSION['login'])) { ?>
+    <a href="alkalmazott_uj">
+        <button type="button">Add New</button>
+    </a>
+<?php } ?>
 
 <br><br>
 
-<?php if(isset($hiba)) { ?>
+<?php if (isset($hiba)) { ?>
     <p><?= htmlspecialchars($hiba) ?></p>
 <?php } ?>
 
@@ -19,42 +20,40 @@
         <th>Skills</th>
         <th>Designation</th>
         <th>Address</th>
-        <th>Actions</th>
+
+        <?php if (isset($_SESSION['login'])) { ?>
+            <th>Actions</th>
+        <?php } ?>
     </tr>
 
-    <?php foreach($alkalmazottak as $sor) { ?>
+    <?php foreach ($alkalmazottak as $sor) { ?>
 
     <tr>
 
         <td><?= htmlspecialchars($sor['nev']) ?></td>
-
         <td><?= htmlspecialchars($sor['kor']) ?></td>
-
         <td><?= htmlspecialchars($sor['keszsegek']) ?></td>
-
         <td><?= htmlspecialchars($sor['munkakor']) ?></td>
-
         <td><?= htmlspecialchars($sor['cim']) ?></td>
 
-        <td>
+        <?php if (isset($_SESSION['login'])) { ?>
+            <td>
 
-            <form action="alkalmazott_szerkeszt" method="post">
-                <input type="hidden" name="id"
-                       value="<?= $sor['id'] ?>">
-                <button class="edit" type="submit">Edit</button>
-            </form>
+                <form action="alkalmazott_szerkeszt" method="post">
+                    <input type="hidden" name="id"
+                           value="<?= $sor['id'] ?>">
+                    <button class="edit" type="submit">Edit</button>
+                </form>
 
-            <form action="alkalmazott_torol" method="post"
-                  onsubmit="return confirm('Biztosan törlöd?');">
+                <form action="alkalmazott_torol" method="post"
+                      onsubmit="return confirm('Biztosan törlöd?');">
+                    <input type="hidden" name="id"
+                           value="<?= $sor['id'] ?>">
+                    <button class="delete" type="submit">Delete</button>
+                </form>
 
-                <input type="hidden" name="id"
-                       value="<?= $sor['id'] ?>">
-
-                <button class="delete" type="submit">Delete</button>
-
-            </form>
-
-        </td>
+            </td>
+        <?php } ?>
 
     </tr>
 
