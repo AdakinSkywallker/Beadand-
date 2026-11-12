@@ -26,21 +26,21 @@ try {
     if (isset($_POST['mentes'])) {
 
         $nev = trim($_POST['nev'] ?? '');
-        $eletkor = trim($_POST['eletkor'] ?? '');
+        $kor = trim($_POST['kor'] ?? '');
         $keszsegek = trim($_POST['keszsegek'] ?? '');
         $munkakor = trim($_POST['munkakor'] ?? '');
-        $lakcim = trim($_POST['lakcim'] ?? '');
+        $cim = trim($_POST['cim'] ?? '');
 
         if (strlen($nev) < 2) {
             $hibak[] = "A név túl rövid!";
         }
 
-        if (!filter_var($eletkor, FILTER_VALIDATE_INT) ||
-            $eletkor < 1 || $eletkor > 120) {
+        if (!filter_var($kor, FILTER_VALIDATE_INT) ||
+            $kor < 1 || $kor > 120) {
             $hibak[] = "Hibás életkor!";
         }
 
-        if ($keszsegek == '' || $munkakor == '' || $lakcim == '') {
+        if ($keszsegek == '' || $munkakor == '' || $cim == '') {
             $hibak[] = "Minden mezőt ki kell tölteni!";
         }
 
@@ -48,20 +48,20 @@ try {
 
             $sql = "UPDATE alkalmazottak SET
                     nev = ?,
-                    eletkor = ?,
+                    kor = ?,
                     keszsegek = ?,
                     munkakor = ?,
-                    lakcim = ?
+                    cim = ?
                     WHERE id = ?";
 
             $sth = $dbh->prepare($sql);
 
             $sth->execute([
                 $nev,
-                $eletkor,
+                $kor,
                 $keszsegek,
                 $munkakor,
-                $lakcim,
+                $cim,
                 $id
             ]);
 
@@ -93,4 +93,3 @@ catch (Exception $e) {
 }
 
 ?>
-
