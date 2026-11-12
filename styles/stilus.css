@@ -101,15 +101,134 @@ footer {
     background-color: white;
 }
 
-.crud-table th {
+
+/*CRUD Táblázat design*/
+
+.crud-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
     background-color: white;
-    color: #222;
-    text-align: left;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
 }
 
+/* Táblázat fejléc */
+
+.crud-table th {
+    background-color: #315b91;
+    color: white;
+    text-align: left;
+    padding: 15px 12px;
+    font-weight: bold;
+    border: none;
+}
+
+/* Táblázat cellák */
+
 .crud-table td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #ddd;
+    padding: 13px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #333;
+}
+
+/* Váltakozó sorszínek */
+
+.crud-table tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+.crud-table tr:nth-child(odd) {
+    background-color: white;
+}
+
+/* Egérrel kijelölt sor */
+
+.crud-table tr:hover td {
+    background-color: #dbeafe;
+    transition: background-color 0.2s;
+}
+
+/* Utolsó sor */
+
+.crud-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Műveleti gombok */
+
+.crud-table button {
+    border: none;
+    padding: 8px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+/* Szerkesztés */
+
+.crud-table button.edit {
+    background-color: #2563eb;
+    color: white;
+}
+
+.crud-table button.edit:hover {
+    background-color: #1d4ed8;
+}
+
+/* Törlés */
+
+.crud-table button.delete {
+    background-color: #dc2626;
+    color: white;
+}
+
+.crud-table button.delete:hover {
+    background-color: #b91c1c;
+}
+
+/* Műveleti űrlapok */
+
+.crud-table form {
+    display: inline-block;
+    margin: 2px;
+}
+
+/* Új alkalmazott gomb */
+
+#content a button {
+    background-color: #315b91;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#content a button:hover {
+    background-color: #23436d;
+}
+
+/* Mobilnézet */
+
+@media (max-width: 768px) {
+    .crud-table {
+        font-size: 12px;
+    }
+
+    .crud-table th,
+    .crud-table td {
+        padding: 8px 6px;
+    }
+
+    .crud-table button {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
 }
